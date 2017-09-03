@@ -3,9 +3,27 @@
         "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
         "http://struts.apache.org/dtds/struts-2.5.dtd">
 <struts>
+<!-- 设置开发者模式 -->
+<constant name="struts.devMode" value="true"></constant>
+<!-- 开启动态方法调用 -->
+<constant name="struts.enable.DynamicMethodInvocation" value="true"></constant>
 	<package name="p1" extends="struts-default">
+	<global-allowed-methods>addUser,deleteUser,findUser</global-allowed-methods>
 		<action name="hello" class="web.action.HelloAction" method="sayHello">
 			<result name="success">/success.jsp</result>
 		</action>
+		<!-- 开发常用的方式创建的动作类的配置 -->
+		<action name="actiondemo2" class="web.action.Demo2Action">
+			<result name="success">/success.jsp</result>
+		</action>
+		
+		<action name="addUser" class="web.action.UserAction" method="addUser">
+			<result name="success">/addUser.jsp</result>
+		</action>
+		
+		<action name="user" class="web.action.UserAction">
+			<result name="success">/success.jsp</result>
+		</action>
 	</package>
+
 </struts>

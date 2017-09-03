@@ -12,5 +12,10 @@
 或者什么后缀都不写 --%>
 	<a href="${pageContext.request.contextPath }/hello.action">有action后缀</a>
 	<a href="${pageContext.request.contextPath }/hello">无action后缀</a>
+	
+	
+	<a href="${pageContext.request.contextPath }/user!addUser.action">添加学生</a>
+	<a href="${pageContext.request.contextPath }/user!deleteUser.action">删除学生</a>
+	<a href="${pageContext.request.contextPath }/user!findUser.action">查找学生</a>
 </body>
 </html>
