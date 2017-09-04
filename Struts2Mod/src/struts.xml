@@ -7,7 +7,7 @@
 <constant name="struts.devMode" value="true"></constant>
 <!-- 开启动态方法调用 -->
 <constant name="struts.enable.DynamicMethodInvocation" value="true"></constant>
-	<package name="p1" extends="struts-default">
+<package name="p1" extends="struts-default">
 	<global-allowed-methods>addUser,deleteUser,findUser</global-allowed-methods>
 		<action name="hello" class="web.action.HelloAction" method="sayHello">
 			<result name="success">/success.jsp</result>
@@ -22,8 +22,27 @@
 		</action>
 		
 		<action name="user" class="web.action.UserAction">
+			<result name="success" type="redirect">/success.jsp</result>
+		</action>
+		
+		<action name="action1" class="web.action.UserAction">
+			<result name="success" type="chain">action2</result><!-- 转发到同包下的其他动作 -->
+		</action>
+		
+		<action name="action2">
 			<result name="success">/success.jsp</result>
 		</action>
+		
+		<action name="action3"><!-- 重定向到不同包下的其他动作 -->
+			<result name="success" type="redirectAction">
+				<param name="namespace">/n</param>
+				<param name="actionName">action4</param>
+			</result>
+		</action>
 	</package>
-
+<package name="p2" extends="struts-default" namespace="/n">
+	<action name="action4">
+		<result name="success">/success.jsp</result>
+	</action>
+</package>
 </struts>
