@@ -35,6 +35,7 @@
 		
 		<action name="action3"><!-- 重定向到不同包下的其他动作 -->
 			<result name="success" type="redirectAction">
+			<!-- 在重定向之前，会先获取这两个参数的值，然后分别调用setNamespace("/n")与setActionName("action4")-->
 				<param name="namespace">/n</param>
 				<param name="actionName">action4</param>
 			</result>
@@ -45,4 +46,17 @@
 		<result name="success">/success.jsp</result>
 	</action>
 </package>
+
+<package name="p3" extends="struts-default">
+			<!-- 自定义结果类型 -->
+		<result-types>
+			<result-type name="captch" class="result.Captch"></result-type>
+		</result-types>
+		<action name="CAPTCH" class="result.CaptchAction">
+			<result name="success" type="captch"></result>
+		</action>
+</package>
+
+
+
 </struts>
