@@ -13,13 +13,20 @@
 	<action name="addUser" class="action.UserAction" method="addUser">
 		<param name="name">tom</param>
 		<param name="age">12</param>
+		
 	</action>
 	
 	<action name="action2" class="action.UserAction2" method="addUser">
 	
 	</action>
 </package>
-
+<!-- 注册相关的配置 -->
+<package name="p2" extends="struts-default">
+	<action name="register" class="action.UserAction4" method="register">
+		<result >/success.jsp</result>
+		<result name="exist">/message.jsp</result>
+	</action>
+</package>
 
 
 
