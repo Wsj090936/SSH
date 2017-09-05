@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+<!-- 设置开发者模式 -->
+<constant name="struts.devMode" value="true"></constant>
+<!-- 开启动态方法调用 -->
+<constant name="struts.enable.DynamicMethodInvocation" value="true"></constant>
+
+<package name="p1" extends="struts-default">
+<!-- 静态封装的配置 -->
+	<action name="addUser" class="action.UserAction" method="addUser">
+		<param name="name">tom</param>
+		<param name="age">12</param>
+	</action>
+	
+	<action name="action2" class="action.UserAction2" method="addUser">
+	
+	</action>
+</package>
+
+
+
+
+
+</struts>
