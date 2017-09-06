@@ -37,12 +37,12 @@ public class UserAction4 extends ActionSupport implements ModelDriven<User1>{
 //			addFieldError("username", "请输入用户名");//该方法在ActionSupport下，可以直接调用，用来设置错误信息
 //		}
 //	}
-	public void validateRegister(){
+/*	public void validateRegister(){//指定动作方法进行验证
 		//这里用的StringUtils类是增强的包，里面包含了很多字符串的操作方法
 		if(StringUtils.isEmpty(user.getUsername())){//isEmpty()判断字符串是否为空字符串或者为null
 			addFieldError("username", "请输入用户名");//该方法在ActionSupport下，可以直接调用，用来设置错误信息
 		}
-	}
+	}*/
 	@Override
 	public User1 getModel() {
 		return user;

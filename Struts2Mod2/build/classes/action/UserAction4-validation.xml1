@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators PUBLIC
+  		"-//Apache Struts//XWork Validator 1.0.3//EN"
+  		"http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
+  		<!-- 全局的验证 -->
+<validators>
+<!-- 基于字段的声明式验证 -->
+<!-- field中的name属性是表单中name属性的取值 -->
+	<field name="username">
+	<!-- requiredstring验证器会验证输入内容是否为空，是否为空字符串，并且去掉左右空格 -->
+		<field-validator type="requiredstring">
+			<message>请输入用户名</message>
+		</field-validator>
+	</field>
+</validators>
