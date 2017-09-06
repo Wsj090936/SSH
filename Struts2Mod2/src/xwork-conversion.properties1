@@ -1,0 +1,4 @@
+#全局类型转换器的命名规则为固定的xwork-conversion.properties
+#放置位置为类路径的根目录下(本地工作区间中的src下)
+#key-value的配置方式为使用的类全名为key，类型转换器的类全名为value
+java.util.Date=converter.MyStrutsConverter

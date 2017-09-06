@@ -25,6 +25,7 @@
 	<action name="register" class="action.UserAction4" method="register">
 		<result >/success.jsp</result>
 		<result name="exist">/message.jsp</result>
+		<result name="input">/register.jsp</result>
 	</action>
 </package>
 

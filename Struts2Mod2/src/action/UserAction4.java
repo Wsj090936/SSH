@@ -1,5 +1,7 @@
 package action;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
@@ -28,9 +30,21 @@ public class UserAction4 extends ActionSupport implements ModelDriven<User1>{
 		return null;
 	}
 
+//	@Override
+//	public void validate() {
+//		//这里用的StringUtils类是增强的包，里面包含了很多字符串的操作方法
+//		if(StringUtils.isEmpty(user.getUsername())){//isEmpty()判断字符串是否为空字符串或者为null
+//			addFieldError("username", "请输入用户名");//该方法在ActionSupport下，可以直接调用，用来设置错误信息
+//		}
+//	}
+	public void validateRegister(){
+		//这里用的StringUtils类是增强的包，里面包含了很多字符串的操作方法
+		if(StringUtils.isEmpty(user.getUsername())){//isEmpty()判断字符串是否为空字符串或者为null
+			addFieldError("username", "请输入用户名");//该方法在ActionSupport下，可以直接调用，用来设置错误信息
+		}
+	}
 	@Override
 	public User1 getModel() {
-		// TODO Auto-generated method stub
 		return user;
 	}
 

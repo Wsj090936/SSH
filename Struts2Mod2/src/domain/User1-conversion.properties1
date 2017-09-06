@@ -1,0 +1,3 @@
+#局部类型转换器配置文件的命名规则：JavaBean名-conversion.properties
+#以使用的属性作为key，类型转换器的全名作为value
+birthday=converter.MyStrutsConverter
