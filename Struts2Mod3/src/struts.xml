@@ -61,4 +61,9 @@
 	</action>
 </package>
 
+<package name="p3" extends="struts-default">
+	<action name="upload" class="action.uploadAction" method="upload"></action>
+</package>
+
+
 </struts>
