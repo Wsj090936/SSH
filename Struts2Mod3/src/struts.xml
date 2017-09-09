@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+<constant name="struts.devMode" value="true"></constant>
+
+<package name="p1" extends="struts-default">
+<!-- 声明拦截器 -->
+<interceptors>
+	<interceptor name="demo1Interceptor" class="Interceptor.demo1Interceptor"></interceptor>
+</interceptors>
+	<action name="demo1" class="action.demo1Action" method="show">
+		<interceptor-ref name="demo1Interceptor"></interceptor-ref>
+		<result name="success">/demo1.jsp</result>
+	</action>
+</package>
+
+<!-- <package name="p2" extends="struts-default">//这个配置存在弊端，没有将默认的拦截器包括进来，正确的在下面
+<interceptors>
+	<interceptor name="CheckLoginInterceptor" class="Interceptor.CheckLoginInterceptor"></interceptor>
+</interceptors>
+<global-results>
+	<result name="input">/login.jsp</result>
+</global-results>
+	<action name="login" class="action.pageAction" method="login">
+		<result type="redirectAction">main</result>
+	</action>
+	<action name="main" class="action.pageAction">
+	<interceptor-ref name="CheckLoginInterceptor"></interceptor-ref>
+		<result name="success">/main.jsp</result>
+	</action>
+	<action name="showpage" class="action.pageAction">
+		<interceptor-ref name="CheckLoginInterceptor"></interceptor-ref>
+		<result name="success">/show.jsp</result>
+	</action>
+</package> -->
+
+<package name="p2" extends="struts-default">
+<interceptors>
+	<interceptor name="CheckLoginInterceptor" class="Interceptor.CheckLoginInterceptor"></interceptor>
+	<interceptor-stack name="MydefaultStack">
+		<interceptor-ref name="defaultStack"></interceptor-ref>
+		<interceptor-ref name="CheckLoginInterceptor"></interceptor-ref>
+	</interceptor-stack>
+</interceptors>
+
+<global-results>
+	<result name="input">/login.jsp</result>
+</global-results>
+	<action name="login" class="action.pageAction" method="login">
+		<result type="redirectAction">main</result>
+	</action>
+	<action name="main" class="action.pageAction">
+		<interceptor-ref name="MydefaultStack"></interceptor-ref>
+		<result name="success">/main.jsp</result>
+	</action>
+	<action name="showpage" class="action.pageAction">
+		<interceptor-ref name="MydefaultStack"></interceptor-ref>
+		<result name="success">/show.jsp</result>
+	</action>
+</package>
+
+</struts>
