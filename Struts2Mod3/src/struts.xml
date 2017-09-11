@@ -4,7 +4,7 @@
         "http://struts.apache.org/dtds/struts-2.5.dtd">
 <struts>
 <constant name="struts.devMode" value="true"></constant>
-
+<constant name="struts.multipart.maxSize" value="5242880"></constant>
 <package name="p1" extends="struts-default">
 <!-- 声明拦截器 -->
 <interceptors>
@@ -62,7 +62,25 @@
 </package>
 
 <package name="p3" extends="struts-default">
-	<action name="upload" class="action.uploadAction" method="upload"></action>
+<!-- 文件的上传 -->
+	<action name="upload" class="action.uploadAction" method="upload">
+		<interceptor-ref name="defaultStack">
+			<param name="fileUpload.allowedExtensions">jpg,png,bmp</param><!-- 设置允许上传的文件扩展名 -->
+			<param name="fileUpload.allowedTypes"></param><!-- 设置允许上传的文件MIME类型 -->
+		</interceptor-ref>
+		<result name="input">/upload.jsp</result>
+	</action>
+	<!-- 文件的下载 -->
+	<action name="download" class="action.downloadAction" method="download">
+		<result name="success" type="stream">
+		<!-- 设置参数，文件MIME类型 -->
+			<param name="contentType">application/octet-stream</param>
+			<!-- 告知浏览器以下载的方式打开文件 -->
+			<param name="contentDisposition">attachment;filename=cat.png</param>
+			<!-- 注入字节输入流，这里的名字要和动作类中的输入流的字段名一样 -->
+			<param name="inputName">inputStream</param>
+		</result>
+	</action>
 </package>
 
 
