@@ -24,6 +24,7 @@ public class ActionContextDemo1 extends ActionSupport {
 		HttpSession session2 = ServletActionContext.getRequest().getSession();
 		session2.setAttribute("session2", "sessiondemo2");
 		
+		
 		return SUCCESS;
 	}
 }

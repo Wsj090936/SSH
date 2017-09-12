@@ -10,6 +10,9 @@
 	<action name="action1" class="action.ActionContextDemo1">
 		<result>/demo1.jsp</result>
 	</action>
+	<action name="action2" class="action.ValueStackDemo1">
+		<result>/demo2.jsp</result>
+	</action>
 </package>
 
 </struts>
