@@ -14,7 +14,8 @@
 	-->
 	<s:property value="username"/><br/><!-- value的值也可以为[0].username,只写username就从栈顶开始找，找到第一个username就停止，不再继续寻找 -->
 	<!-- 指定位置取值 -->
-	<s:property value="[1].username"/>
-	
+	<s:property value="[1].username"/><br/>
+	<!-- 取栈顶元素的值 -->
+	<s:property value="s.username"/>
 </body>
 </html>
