@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+<constant name="struts.devMode" value="true"></constant>
+<constant name="struts.ognl.allowStaticMethodAccess" value="true"></constant>
+
+<package name="p1" extends="struts-default">
+	<action name="action1" class="action.ActionContextDemo1">
+		<result>/demo1.jsp</result>
+	</action>
+</package>
+
+</struts>
