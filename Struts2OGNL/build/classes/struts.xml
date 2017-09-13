@@ -13,6 +13,9 @@
 	<action name="action2" class="action.ValueStackDemo1">
 		<result>/demo2.jsp</result>
 	</action>
+	<action name="action3" class="action.iteratorAction">
+		<result>/iteratordemo.jsp</result>
+	</action>
 </package>
 
 </struts>
