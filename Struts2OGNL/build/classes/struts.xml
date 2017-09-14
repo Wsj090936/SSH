@@ -16,6 +16,15 @@
 	<action name="action3" class="action.iteratorAction">
 		<result>/iteratordemo.jsp</result>
 	</action>
+	<action name="action4" class="action.CheckboxlistAction">
+		<result>/Checkboxlist.jsp</result>
+	</action>
+	<action name="save" class="action.CheckboxlistAction" method="save">
+		<result>/Checkboxlist.jsp</result>
+	</action>
+	<action name="saveCustomer" class="action.CustomerAction" method="save">
+		<result>/Customer.jsp</result>
+	</action>
 </package>
 
 </struts>
