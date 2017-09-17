@@ -32,6 +32,43 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 		// TODO Auto-generated method stub
 		return user;
 	}
+	//----------编辑用户-----------
+	public String edit(){
+		if(upload == null){//如果用户没有重新上传文件，就用原来的
+			
+		}else{//如果用户重新上传了文件
+			
+		}
+		String filePath = ServletActionContext.getServletContext().getRealPath("/files");
+		String dir = generateChilePath(filePath);
+		String fileName = TokenHelper.generateGUID();//随机文件名
+		fileName = fileName+"_"+uploadFileName;
+		
+		user.setPath(dir);
+		user.setFilename(fileName);
+		upload.renameTo(new File(filePath+File.separator+dir,fileName));//上传文件
+		int re = us.modifyUser(user);
+		if(re>0){
+			return SUCCESS;			
+		}else
+			return INPUT;
+	}
+	public String editUser(){
+		//给栈顶的user对象赋值
+		user = us.findUserByID(user.getUserID());
+		//压入栈顶
+		ValueStack vs = ActionContext.getContext().getValueStack();
+		vs.push(user);
+		return SUCCESS;
+	}
+	//--------------删除用户------------------
+	public String deleteUserById(){
+		int res = us.removeUser(user.getUserID());
+		if(res>0){
+			return SUCCESS;
+		}
+		return null;
+	}
 	//-------------下载文件------------
 	private String oldFileName;//用户上传的文件名
 	private InputStream inputStream;

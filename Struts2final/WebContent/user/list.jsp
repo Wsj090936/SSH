@@ -172,10 +172,10 @@
 												<s:property value="#user.education"/>
 											</td>
 											<td align="center" style="HEIGHT: 22px">
-												<a href="${pageContext.request.contextPath}/user/edit.jsp?userID=15">
+												<s:a action="editUser">
+													<s:param name="userID" value="#user.userID"></s:param>
 													<img src="${pageContext.request.contextPath}/images/i_edit.gif" border="0" style="CURSOR: hand">
-												</a>
-												
+												</s:a>
 											</td>
 											<td align="center" style="HEIGHT: 22px">
 											<s:a action="findUserById">
@@ -184,9 +184,10 @@
 											</s:a>
 											</td>
 											<td align="center" style="HEIGHT: 22px">
-												<a href="${pageContext.request.contextPath}/user/list.jsp?userID=15">
+												<s:a action="deleteUseByIdr">
+													<s:param name="userID" value="#user.userID"></s:param>
 													<img src="${pageContext.request.contextPath}/images/i_del.gif" width="16" height="16" border="0" style="CURSOR: hand">
-												</a>
+												</s:a>
 											</td>
 										</tr>
 									</s:iterator>
