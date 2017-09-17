@@ -5,6 +5,8 @@
  <struts>
  <constant name="struts.devMode" value="true"></constant>
  <constant name="struts.ui.theme" value="simple"></constant><!-- 更改主题 -->
+ <constant name="struts.ognl.allowStaticMethodAccess" value="true"></constant><!-- 开启静态方法调用 -->
+ 
  	<package name="p1" extends="struts-default">
 		<action name="login" class="action.UserAction" method="login">
 			<result>/login/home.jsp</result>
@@ -14,9 +16,23 @@
 		     <interceptor-ref name="defaultStack">
                     <param name="fileUpload.allowedExtensions">.doc,.docx</param><!-- 设置允许上传的文件扩展名 -->
              </interceptor-ref>
-		
 			<result>/user/list.jsp</result>
 			<result name="input">/user/add.jsp</result>
+		</action>
+		
+		<action name="findAll" class="action.UserAction" method="findAllUser">
+			<result>/user/list.jsp</result>
+		</action>
+		<action name="findUserById" class="action.UserAction" method="findUserById">
+			<result>/user/view.jsp</result>
+		</action>
+		<action name="download" class="action.UserAction" method="download">
+			<result name="success" type="stream">
+				<param name="inputName">inputStream</param>
+				<!-- 设置编码和文件名 -->
+				<param name="contentDisposition">attachment;filename=${@java.net.URLEncoder@encode(oldFileName,"UTF-8")}</param>
+				<param name="contentType">application/octet-stream</param>
+			</result>
 		</action>
  	</package>
  </struts>

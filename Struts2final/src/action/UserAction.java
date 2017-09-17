@@ -1,17 +1,22 @@
 package action;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.util.TokenHelper;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
+import com.opensymphony.xwork2.util.ValueStack;
 
 import ServiceImpl.UserServiceImpl;
 import domain.User;
@@ -27,6 +32,35 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 		// TODO Auto-generated method stub
 		return user;
 	}
+	//-------------下载文件------------
+	private String oldFileName;//用户上传的文件名
+	private InputStream inputStream;
+	public String download() throws Exception{
+		Integer id = user.getUserID();
+		User user2 = us.findUserByID(id);
+		String path = ServletActionContext.getServletContext().getRealPath("/files");
+		oldFileName = user2.getFilename().substring(user2.getFilename().indexOf("_")+1);
+		inputStream = new FileInputStream(path+File.separator+user2.getPath()+File.separator+user2.getFilename());
+		return SUCCESS;
+	}
+	public String findUserById(){
+		//给栈顶的user对象赋值
+		User user1 = us.findUserByID(user.getUserID());
+		//压入栈顶
+		ValueStack vs = ActionContext.getContext().getValueStack();
+		vs.push(user1);
+		return SUCCESS;
+	}
+	//---------找到所有用户---------
+	private List<User> users;//可以在ValueStack中取到
+	public String findAllUser(){
+		users = us.findAllUser();
+		return SUCCESS;
+	}
+	/**
+	 * 登陆
+	 * @return
+	 */
 	public String login(){
 		String loginName = user.getLoginName();
 		String loginPwd = user.getLoginPwd();
@@ -39,6 +73,10 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 		session.setAttribute("user", user1);
 		return SUCCESS;
 	}
+	/**
+	 * 添加用户
+	 * @return
+	 */
 	public String addUser(){
 		String filePath = ServletActionContext.getServletContext().getRealPath("/files");
 		String dir = generateChilePath(filePath);
@@ -87,6 +125,24 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 	}
 	public void setUploadFileName(String uploadFileName) {
 		this.uploadFileName = uploadFileName;
+	}
+	public List<User> getUsers() {
+		return users;
+	}
+	public void setUsers(List<User> users) {
+		this.users = users;
+	}
+	public InputStream getInputStream() {
+		return inputStream;
+	}
+	public void setInputStream(InputStream inputStream) {
+		this.inputStream = inputStream;
+	}
+	public String getOldFileName() {
+		return oldFileName;
+	}
+	public void setOldFileName(String oldFileName) {
+		this.oldFileName = oldFileName;
 	}
 
 }
