@@ -20,7 +20,7 @@
 		});
 	</script>
 	<body>
-		<s:form action="addUser" name="Form1" id="userAction_save_do" enctype="multipart/form-data">
+		<s:form action="addUser" namespace="/user" name="Form1" enctype="multipart/form-data">
 			&nbsp;
 			<table cellSpacing="1" cellPadding="5" width="100%" align="center" bgColor="#eeeeee" style="border: 1px solid #8ba7e3" border="0">
 				<tr>

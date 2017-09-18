@@ -16,7 +16,7 @@
   <tr>
     <td>
 <div class="dtree">
-	<s:url action="findAll" var="url"/>
+	<s:url action="findAll" namespace="/user" var="url"/>
 	<a href="javascript: d.openAll();">展开所有</a> | <a href="javascript: d.closeAll();">关闭所有</a>
 	<link rel="StyleSheet" href="${pageContext.request.contextPath}/css/dtree.css" type="text/css" />
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/dtree.js"></script>

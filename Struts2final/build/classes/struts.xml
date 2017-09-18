@@ -6,25 +6,44 @@
  <constant name="struts.devMode" value="true"></constant>
  <constant name="struts.ui.theme" value="simple"></constant><!-- 更改主题 -->
  <constant name="struts.ognl.allowStaticMethodAccess" value="true"></constant><!-- 开启静态方法调用 -->
- 
- 
- 	<package name="p1" extends="struts-default">
- 	<!-- 登陆 -->
+ <constant name="struts.enable.DynamicMethodInvocation" value="true"></constant>
+  	<!-- 自定义拦截器 ,哪个包需要使用拦截器就拦截-->
+ 	<package name="mydefault" extends="struts-default" abstract="true">
+ 		<interceptors>
+ 			<interceptor name="checkloginInterception" class="interceptor.checkloginInterception"></interceptor>
+ 			<interceptor-stack name="mydefaultStack">
+ 				<interceptor-ref name="defaultStack"></interceptor-ref>
+ 				<interceptor-ref name="checkloginInterception"></interceptor-ref>
+ 			</interceptor-stack>
+ 		</interceptors>
+ 		<!-- 重置默认拦截器栈 -->
+ 		<default-interceptor-ref name="mydefaultStack"></default-interceptor-ref>
+ 		<!-- 全局结果视图 -->
+ 		<global-results>
+ 			<result name="login">/login/login.jsp</result>
+ 		</global-results>
+ 	</package>
+ 	
+ <package name="p2" extends="struts-default">
+ 	 	<!-- 登陆 -->
 		<action name="login" class="action.UserAction" method="login">
-			<result>/login/home.jsp</result>
+			<result name="success">/login/home.jsp</result>
 			<result name="input">/login/login.jsp</result>
+		</action>
+ </package>
+ 
+ 	<package name="p1" extends="mydefault" namespace="/user">
+		<!-- 查找所有用户 -->
+		<action name="findAll" class="action.UserAction" method="findAllUser">
+			<result>/user/list.jsp</result>
 		</action>
 		<!-- 添加用户 -->
 		<action name="addUser" class="action.UserAction" method="addUser">
 		     <interceptor-ref name="defaultStack">
                     <param name="fileUpload.allowedExtensions">.doc,.docx</param><!-- 设置允许上传的文件扩展名 -->
              </interceptor-ref>
-			<result>/user/list.jsp</result>
+			<result>findAll</result>
 			<result name="input">/user/add.jsp</result>
-		</action>
-		<!-- 查找所有用户 -->
-		<action name="findAll" class="action.UserAction" method="findAllUser">
-			<result>/user/list.jsp</result>
 		</action>
 		<!-- 通过ID查找用户 -->
 		<action name="findUserById" class="action.UserAction" method="findUserById">
@@ -43,7 +62,7 @@
 		<action name="deleteUserById" class="action.UserAction" method="deleteUserById">
 			<result type="redirectAction">findAll</result><!-- 删除成功后重新获取数据 -->
 		</action>
-		
+				<!-- 修改用户 -->
 		<action name="editUser" class="action.UserAction" method="editUser"><!-- 用户编辑时回显数据 -->
 			<result>/user/edit.jsp</result>
 		</action>
@@ -51,5 +70,10 @@
 			<result name="input">/user/edit.jsp</result>
 			<result type="redirectAction">findAll</result>
 		</action>
+		<!-- 多条件查询 -->
+		<action name="findUserByCondition" class="action.UserAction" method="findUserByCondition">
+			<result>/user/list.jsp</result>
+		</action>
  	</package>
+
  </struts>

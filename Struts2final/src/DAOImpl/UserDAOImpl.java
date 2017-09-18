@@ -79,9 +79,9 @@ public class UserDAOImpl implements UserDao {
 			return selectAllUser();//如果什么条件都没选，就直接查询所有
 		}else{
 			List<Object> parameters = new ArrayList<>();//存放替换通配符的参数
-			String sql = "SELECT * FROM s_user WHERE";
+			String sql = "SELECT * FROM s_user";
 			StringBuffer ss = new StringBuffer();
-			ss.append(" 1=1 ");//为了append方便
+			ss.append(" WHERE 1=1 ");//为了append方便
 			if(StringUtils.isNotBlank(userName)){
 				ss.append(" AND userName like ?");
 				parameters.add("%"+userName+"%");
@@ -101,7 +101,7 @@ public class UserDAOImpl implements UserDao {
 					ss.append(" AND filename is NULL");
 				}
 			}
-			sql = ss.toString();
+			sql = sql+ss.toString();
 			try {
 				return qr.query(sql, new BeanListHandler<>(User.class),parameters.toArray());
 			} catch (SQLException e) {

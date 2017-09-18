@@ -21,7 +21,7 @@
 	</script>
 	<body>
 	<s:debug></s:debug>
-		<s:form action="edit" name="Form1" id="userAction_save_do" enctype="multipart/form-data">
+		<s:form action="edit" name="Form1" namespace="/user" enctype="multipart/form-data">
 			&nbsp;
 			<input type="hidden" name="userID" value="<s:property value='userID'/>"/>
 			<table cellSpacing="1" cellPadding="5" width="100%" align="center" bgColor="#eeeeee" style="border: 1px solid #8ba7e3" border="0">

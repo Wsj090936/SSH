@@ -32,6 +32,13 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 		// TODO Auto-generated method stub
 		return user;
 	}
+	//-----------------多条件查询------------------
+	private String isupload;
+	public String findUserByCondition(){
+		users = us.findUserByCondition(user.getUserName(), user.getGender(), user.getEducation(), isupload);
+		return SUCCESS;
+	}
+	
 	//----------编辑用户-----------
 	public String edit(){
 		if(upload == null){//如果用户没有重新上传文件，就用原来的
