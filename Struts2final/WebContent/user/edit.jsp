@@ -20,8 +20,10 @@
 		});
 	</script>
 	<body>
+	<s:debug></s:debug>
 		<s:form action="edit" name="Form1" id="userAction_save_do" enctype="multipart/form-data">
 			&nbsp;
+			<input type="hidden" name="userID" value="<s:property value='userID'/>"/>
 			<table cellSpacing="1" cellPadding="5" width="100%" align="center" bgColor="#eeeeee" style="border: 1px solid #8ba7e3" border="0">
 				<tr>
 					<td class="ta_01" align="center" bgColor="#afd1f3" colSpan="4"
@@ -86,7 +88,7 @@
 						兴趣爱好：
 					</td>
 					<td class="ta_01" bgColor="#ffffff" colSpan="3">
-						<s:checkboxlist name="hobby" list="{'吃饭','摄影','旅行','编程','睡觉'}"/>
+						<s:checkboxlist name="hobby" list="{'吃饭','摄影','旅行','编程','睡觉'}" value="hobby.split(', ')"/>
 					</td>
 				</tr>
 				<tr>

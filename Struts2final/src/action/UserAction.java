@@ -35,23 +35,31 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 	//----------编辑用户-----------
 	public String edit(){
 		if(upload == null){//如果用户没有重新上传文件，就用原来的
-			
+			//先将用户原来的信息查出
+			User dbUser = us.findUserByID(user.getUserID());
+			//将path、和filename取出，存入
+			user.setPath(dbUser.getPath());
+			user.setFilename(dbUser.getFilename());
+			int res = us.modifyUser(user);
+			if(res>0){
+				return SUCCESS;
+			}
+			return null;
 		}else{//如果用户重新上传了文件
+			String filePath = ServletActionContext.getServletContext().getRealPath("/files");
+			String dir = generateChilePath(filePath);
+			String fileName = TokenHelper.generateGUID();//随机文件名
+			fileName = fileName+"_"+uploadFileName;
 			
+			user.setPath(dir);
+			user.setFilename(fileName);
+			upload.renameTo(new File(filePath+File.separator+dir,fileName));//上传文件
+			int re = us.modifyUser(user);
+			if(re>0){
+				return SUCCESS;			
+			}
 		}
-		String filePath = ServletActionContext.getServletContext().getRealPath("/files");
-		String dir = generateChilePath(filePath);
-		String fileName = TokenHelper.generateGUID();//随机文件名
-		fileName = fileName+"_"+uploadFileName;
-		
-		user.setPath(dir);
-		user.setFilename(fileName);
-		upload.renameTo(new File(filePath+File.separator+dir,fileName));//上传文件
-		int re = us.modifyUser(user);
-		if(re>0){
-			return SUCCESS;			
-		}else
-			return INPUT;
+			return null;
 	}
 	public String editUser(){
 		//给栈顶的user对象赋值

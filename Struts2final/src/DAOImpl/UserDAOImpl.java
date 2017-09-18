@@ -38,7 +38,7 @@ public class UserDAOImpl implements UserDao {
 	@Override
 	public int updataUser(User user) {
 		try {
-			return qr.update("update s_user set userName=?,logonName=?,logonPwd=?,gender=?,birthday=?,education=?,telephone=?,hobby=?,path=?,filename=?,remark=? where userID = ?",
+			return qr.update("update s_user set userName=?,loginName=?,loginPwd=?,gender=?,birthday=?,education=?,telephone=?,hobby=?,path=?,filename=?,remark=? where userID = ?",
 					user.getUserName(),user.getLoginName(),user.getLoginPwd(),user.getGender(),user.getBirthday(),user.getEducation(),user.getTelephone(),
 					user.getHobby(),user.getPath(),user.getFilename(),user.getRemark(),user.getUserID());
 		} catch (SQLException e) {
