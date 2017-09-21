@@ -74,7 +74,20 @@ public class Session_test {
 		System.out.println(list);
 		//查询的第二种方法，通过传入HQL语句查询
 		Query<User> query2 = session.createQuery("from domain.User", User.class);
-		List<User> list2 = query2.list();
+		List<User> list2 = query2.list();//返回一个集合
 		System.out.println(list2);
+		
+		Query<User> query3 = session.createQuery("from domain.User where id=1", User.class);
+		User user = query3.uniqueResult();//只返回一个对象
+		System.out.println(user);
+		
+		//分页查询
+		Query<User> query4 = session.createQuery("from domain.User", User.class);
+		//从第几个开始查
+		query4.setFirstResult(0);
+		//查几个
+		query4.setMaxResults(2);
+		List<User> list3 = query4.list();
+		System.out.println(list3);
 	}
 }
