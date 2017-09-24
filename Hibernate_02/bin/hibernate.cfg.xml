@@ -19,6 +19,8 @@
 		<property name="hbm2ddl.auto">update</property>
 		
 		<mapping resource="domain/User.hbm.xml"/>
+		<mapping resource="domain/Customer.hbm.xml"/>
+		<mapping resource="domain/Order.hbm.xml"/>
 
 	</session-factory>
 	
