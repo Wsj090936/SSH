@@ -13,7 +13,7 @@
 			key元素：用来描述外键
 				columd属性：与之关联的表中的外键的名称
 		-->
-		<set name="orders" inverse="true">
+		<set name="orders" inverse="false" cascade="delete-orphan">
 			<key column="cid"></key>
 			<!-- 一对多关系的表达，其中的class表示另一方的类名 -->
 			<one-to-many class="domain.Order"/>
