@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+    <hibernate-mapping package="domain">
+    	<class name="Student" table="t_student">
+    		<id name="id" column="id">
+    			<generator class="native"></generator>
+    		</id>
+    		<property name="name" column="name"></property>
+    		<!-- 多对多关系的配置
+    				set：表示集合
+    					name：集合的属性名称
+    					table：中间表的名称
+    				key：表示外键
+    					column：己方的外键名
+    				many-to-many：表达多对多关系
+    					class：对方的类名
+    					column：对方在中间表的外键名
+    		 -->
+    		<set name="courses" table="t_student_course" inverse="false" cascade="save-update">
+    			<key column="sid"></key>
+    			<many-to-many class="Course" column="cid" ></many-to-many>
+    		</set>
+    	</class>
+    </hibernate-mapping>
