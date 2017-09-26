@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="domain.Order" table="t_order">
+	
+		<id name="id" column="id">
+			<generator class="native"></generator>
+		</id>
+		<property name="name" column="name"></property>
+		<!-- 多对一关系的表达，class是另一方的类名，column表示外键的列名，name表示引用的属性名称 -->
+		<many-to-one name="customer" column="cid" class="domain.Customer"></many-to-one>
+	</class>
+	
+</hibernate-mapping>

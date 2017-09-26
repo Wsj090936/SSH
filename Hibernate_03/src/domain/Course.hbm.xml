@@ -9,7 +9,7 @@
     		</id>
     		<property name="name" column="name"></property>
     		
-    		<set name="students" table="t_student_course" inverse="true">
+    		<set name="students" table="t_student_course">
     			<key column="cid"></key>
     			<many-to-many class="Student" column="sid"></many-to-many>
     		</set>
