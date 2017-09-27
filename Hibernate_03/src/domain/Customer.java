@@ -8,6 +8,15 @@ public class Customer {
 	private String name;
 	private Set<Order> orders = new HashSet<>();
 	
+	public Customer(Integer id, String name) {
+		super();
+		this.id = id;
+		this.name = name;
+	}
+	
+	public Customer() {
+	}
+
 	public Integer getId() {
 		return id;
 	}
@@ -25,6 +34,10 @@ public class Customer {
 	}
 	public void setOrders(Set<Order> orders) {
 		this.orders = orders;
+	}
+	@Override
+	public String toString() {
+		return "Customer [id=" + id + ", name=" + name + ", orders=" + orders + "]";
 	}
 
 	
