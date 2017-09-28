@@ -22,5 +22,9 @@
     			<key column="sid"></key>
     			<many-to-many class="Course" column="cid" ></many-to-many>
     		</set>
+    		    	<!-- 局部配置 -->
+    	<query name="abc"><![CDATA[from Order]]></query>
     	</class>
+    	<!-- 全局配置 -->
+    	<query name="abc"><![CDATA[from Customer]]></query>
     </hibernate-mapping>

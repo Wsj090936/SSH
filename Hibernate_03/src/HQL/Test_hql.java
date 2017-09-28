@@ -135,4 +135,17 @@ public class Test_hql {
 		transaction.commit();
 		session.close();
 	}
+	@Test
+	public void fun9(){//配置文件中配置好的hql语句
+		Session session = HibernateUtils.openSession();
+		Transaction transaction = session.beginTransaction();
+		
+		Query query = session.getNamedQuery("domain.Student.abc");
+		List list = query.list();
+		
+		System.out.println(list);
+		
+		transaction.commit();
+		session.close();
+	}
 }
