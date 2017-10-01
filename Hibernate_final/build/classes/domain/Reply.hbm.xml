@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+    <hibernate-mapping package="domain">
+    	<class name="Reply" table="t_reply">
+    		<id name="rid" column="rid">
+    			<generator class="native"></generator>
+    		</id>
+    		<property name="replyContent" column="replyContent"></property>
+    		<property name="ipAddr" column="ipAddr"></property>
+    		<property name="replyDate" column="replyDate"></property>
+    		
+    		<many-to-one name="topic" class="domain.Topic" column="tid"></many-to-one>
+    	</class>
+    </hibernate-mapping>
