@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans
+                			http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+        <bean id="UserServiceId" class="service.UserServiceImpl">
+        	<!-- name为被注入对象的属性名，通过setter方法得到，ref为配置文件中被注入对象的id -->
+        	<property name="userDao" ref="UserDaoId"></property>
+        </bean>
+        <bean id="UserDaoId" class="service.UserDAOImpl"></bean>
+</beans>
