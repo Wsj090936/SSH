@@ -4,8 +4,15 @@
         "http://struts.apache.org/dtds/struts-2.5.dtd">
 <struts>
 	<package name="tieba" namespace="/" extends="struts-default">
-		<action name="addAction" class="action.TopicAction" method="add">
-			<result name="success">/index.jsp</result>
+		<action name="TopicAction_add" class="action.TopicAction" method="add">
+			<result name="success" type="redirectAction">
+				<param name="actionName">TopicAction_list</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+		
+		<action name="TopicAction_list" class="action.TopicAction" method="list">
+			<result name="list">/index.jsp</result>
 		</action>
 	</package>
 </struts>
