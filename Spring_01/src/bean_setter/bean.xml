@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans
+                			http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<bean id="PersonId" class="bean_setter.Person">
+		<property name="pid" value="1"></property>
+		<property name="pname" value="tom"></property>
+		<property name="addr" ref="AddressId"></property><!--以其他bean作为属性成员时，使用ref进行配置，ref的值是另一个bean的id  -->
+		
+	</bean>
+    <bean id="AddressId" class="bean_setter.Address">
+    	<property name="city" value="重庆"></property>
+    	<property name="tel" value="1234567"></property>
+    </bean>
+</beans>
