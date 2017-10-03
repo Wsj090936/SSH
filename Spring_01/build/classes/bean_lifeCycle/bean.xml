@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans
+                			http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!-- 初始化方法和销毁方法的配置 -->
+        <bean id="UserServiceId" class="bean_lifeCycle.UserServiceImpl" init-method="init" destroy-method="destroy"></bean>
+        
+</beans>

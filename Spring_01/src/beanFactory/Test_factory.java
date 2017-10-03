@@ -11,4 +11,6 @@ public class Test_factory {
 		UserService us = applicationContext.getBean("UserServiceId", UserService.class);
 		us.addUser();
 	}
+
+
 }
