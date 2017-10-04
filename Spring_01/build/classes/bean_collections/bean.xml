@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans
+                			http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!-- 集合的注入 -->	
+	<bean id="CollectionId" class="bean_collections.CollectionsData">
+	
+		<property name="array">
+			<array>
+				<value>帅哥</value>
+
+				<value>美女</value>
+			</array>
+		</property>
+		
+		<property name="list">
+			<list>
+				<value>tom</value>
+				<value>jerry</value>
+			</list>
+		</property>
+		
+		<property name="set">
+			<set>
+				<value>tom</value><!-- 不能有重复的，后一个会将前一个覆盖-->
+				<value>tom</value>
+			</set>
+		</property>
+		
+		<property name="map">
+			<map>
+				<entry key="tom" value="汤姆"></entry>
+				<entry key="jerry" value="杰瑞"></entry>
+			</map>
+		</property>
+		
+		<property name="props">
+			<props>
+				<prop key="jack">杰克</prop><!--没有重复的元素，后一个会将前一个覆盖  -->
+				<prop key="jack">杰克</prop>
+			</props>
+		</property>
+	</bean>
+        
+</beans>
