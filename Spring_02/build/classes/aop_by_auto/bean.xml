@@ -1,27 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xmlns:aop="http://www.springframework.org/schema/aop"
-        xsi:schemaLocation="http://www.springframework.org/schema/beans
-                			http://www.springframework.org/schema/beans/spring-beans.xsd
-                			http://www.springframework.org/schema/aop
+        xmlns:aop="http://www.springframework.org/schema/aop" 
+        xsi:schemaLocation="http://www.springframework.org/schema/beans 
+        					http://www.springframework.org/schema/beans/spring-beans.xsd
+                			http://www.springframework.org/schema/aop 
                 			http://www.springframework.org/schema/aop/spring-aop.xsd">
-<!-- 设置目标类 -->
+	<!-- 设置目标类 -->
 	<bean id="UserServiceId" class="aop_by_auto.UserServiceImpl"></bean>
-<!-- 设置切面类 -->
+	<!-- 设置切面类 -->
 	<bean id="myAspectId" class="aop_by_auto.MyAspect"></bean>
-<!-- 配置AOP 
-	<aop:config>：用来配置AOP	
-		<aop:pointcut>：切入点，其中的expression属性是acpectj表达式，用来从切入点获取具体的方法
-				execution(* aop_by_auto.UserServiceImpl.*(..))
-						 返回值任意      类中的方法任意            参数任意
-		<aop:advisor>：特殊的切面，只有一个切入点和一个通知(advice)
-			advice-ref：切面类的引用(id)
-			pointcut-ref：切入点的应用(id)
-			
--->
-	 <aop:config>
-	 	<aop:pointcut expression="execution(* aop_by_auto.UserServiceImpl.*(..))" id="MyPointCut"/><!-- 切入点 -->
-	 	<aop:advisor advice-ref="myAspectId" pointcut-ref="MyPointCut"/><!--  -->
-	 </aop:config>
+	<!-- 配置AOP <aop:config>：用来配置AOP <aop:pointcut>：切入点，其中的expression属性是acpectj表达式，用来从切入点获取具体的方法 
+		execution(* aop_by_auto.UserServiceImpl.*(..)) 返回值任意 类中的方法任意 参数任意 <aop:advisor>：特殊的切面，只有一个切入点和一个通知(advice) 
+		advice-ref：切面类的引用(id) pointcut-ref：切入点的应用(id) -->
+	<aop:config>
+		<aop:pointcut expression="execution(* aop_by_auto.UserServiceImpl.*(..))" id="MyPointCut" /><!-- 切入点 -->
+		<aop:advisor advice-ref="myAspectId" pointcut-ref="MyPointCut" /><!-- -->
+	</aop:config>
 </beans>
